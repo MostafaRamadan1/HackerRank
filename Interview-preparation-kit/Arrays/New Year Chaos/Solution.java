@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-
 //URL: https://www.hackerrank.com/challenges/new-year-chaos/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
 public class Solution {
 
@@ -28,15 +27,12 @@ public class Solution {
             if(currentPerson != simulationQueue[i]){
                 int index = getIndex(currentPerson, i, -1, simulationQueue);
                 int diff = index - i;
-                if(diff == 2){
-                        simulationQueue[i+2] = simulationQueue[i+1]; // swap
-                        simulationQueue[i+1] = simulationQueue[i]; // swap
-                        simulationQueue[i] = currentPerson;
-                    }
-                    if(diff == 1){
-                        simulationQueue[i + diff] = simulationQueue[i]; //  swap
-                        simulationQueue[i] = currentPerson;
-                    }
+                
+                int[] b = Arrays.copyOfRange(simulationQueue, i, i+diff);
+                simulationQueue[i] = currentPerson;
+                for(int j = 0;j < b.length;j++){
+                    simulationQueue[i+j+1] = b[j];
+                }
                 numOfBribes += diff;
             }
 
