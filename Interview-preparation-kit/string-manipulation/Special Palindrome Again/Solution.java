@@ -24,6 +24,10 @@ public class Solution {
                   if(balancedIndex == -1 || ( j - balancedIndex == balancedIndex -i ) ){
                     count++; 
                   }
+				  //improvement to avoid loop until the end of array
+                  if(balancedIndex > -1 && (j - balancedIndex > balancedIndex -i)){
+                      break;
+                  }
                } else{
                    if(diffCharDetected){
                        break;
